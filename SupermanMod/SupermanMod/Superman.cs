@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
 using MelonLoader;
+using SLZ.AI;
 using Superman;
 using UnityEngine;
 
