@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using MelonLoader;
 using SLZ.AI;
-using Superman;
+using SuperMan;
 using UnityEngine;
 
 [assembly: MelonInfo(typeof(SupermanMod.Superman), "Superman", "1.0.0", "RSM && Joe")]
@@ -22,6 +22,12 @@ namespace SupermanMod
         private float previousPressedTime;
         private float doublePressDelay = 0.3f;
 
+        internal HeatVisionLaserComponent laserLeft;
+        internal HeatVisionLaserComponent laserRight;
+
+        public static Transform leftEye;
+        public static Transform rightEye;
+
         public override void OnApplicationStart()
         {
             HarmonyInstance.Patch(typeof(SLZ.Rig.RigManager).GetMethod("Awake", AccessTools.all), new HarmonyMethod(typeof(Superman).GetMethod("StartRig", BindingFlags.NonPublic | BindingFlags.Static)));
@@ -30,32 +36,27 @@ namespace SupermanMod
         private static void StartRig()
         {
             Player.FindObjectReferences();
-        }
-        private static void AItest(AIBrain blah)
-        {
-            blah.behaviour.health.maxHitPoints *= 1000f;
+            leftEye = Player.rigManager.animationRig.transform.Find("Head/eyeLf");
+            rightEye = Player.rigManager.animationRig.transform.Find("Head/eyeRt");
+            MelonLogger.Msg(Player.rigManager.animationRig.transform.Find("Head/eyeRt").name);
+            leftEye.gameObject.AddComponent<HeatVisionLaserComponent>();
+            rightEye.gameObject.AddComponent<HeatVisionLaserComponent>();
         }
 
         public override void OnFixedUpdate()
         {
             if (!Player.handsExist)
             {
-                MelonLogger.Msg("Couldn't find...");
                 return;
             }
             if (Player.rightController._gripForce == 1f && Player.leftController._gripForce == 1f)
             {
-                MelonLogger.Msg("Gripping...");
                 Vector3 midPointHands = (Player.rightHand.transform.position + Player.leftHand.transform.position) / 2;
-                MelonLogger.Msg("Got past midPointHands...");
                 Vector3 midHands2Head = (midPointHands + Player.playerHead.transform.position) / 2;
-                MelonLogger.Msg("Got past midHands2Head...");
                 Vector3 midHandRot = (Player.rightHand.transform.forward + Player.leftHand.transform.forward) / 2;
-                MelonLogger.Msg("Got past midHandRot...");
-                float flyMagnitude = Mathf.Pow(Vector3.Distance(midHands2Head, Player.playerHead.position), 2f) / 3;
-                MelonLogger.Msg(flyMagnitude);
+                float flyMagnitude = Mathf.Pow(Vector3.Distance(midHands2Head, Player.playerHead.position), 1.5f) / 2f;
                 Player.physicsRig.torso.rbPelvis.AddForceAtPosition(midHandRot * flyMagnitude * 20 * Player.GetCurrentAvatar().massTotal, Player.playerHead.position, ForceMode.Impulse);
-                MelonLogger.Msg(Player.GetCurrentAvatar().name + " || " + Player.playerHead.name);
+                //temp.transform.position = Player.GetCurrentAvatar().eyeCenterOverride.position;
             }
 
             //float
