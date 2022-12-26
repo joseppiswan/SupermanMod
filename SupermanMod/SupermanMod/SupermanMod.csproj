@@ -421,9 +421,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Superman.cs" />
+    <Compile Include="EmbeddedAssetBundleLakatrazz.cs" />
+    <Compile Include="HeatVisionLaserComponent.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supermanmod.superman_assets" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
