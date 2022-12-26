@@ -1,0 +1,6 @@
+D:\OculusGames\Software\stress-level-zero-inc-bonelab\Mods\SupermanMod.dll
+D:\OculusGames\Software\stress-level-zero-inc-bonelab\Mods\SupermanMod.pdb
+D:\GithubClones\SupermanMod\SupermanMod\SupermanMod\obj\Debug\SupermanMod.csproj.AssemblyReference.cache
+D:\GithubClones\SupermanMod\SupermanMod\SupermanMod\obj\Debug\SupermanMod.csproj.CoreCompileInputs.cache
+D:\GithubClones\SupermanMod\SupermanMod\SupermanMod\obj\Debug\SupermanMod.dll
+D:\GithubClones\SupermanMod\SupermanMod\SupermanMod\obj\Debug\SupermanMod.pdb
