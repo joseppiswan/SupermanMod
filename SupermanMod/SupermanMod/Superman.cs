@@ -31,6 +31,10 @@ namespace SupermanMod
         {
             Player.FindObjectReferences();
         }
+        private static void AItest(AIBrain blah)
+        {
+            blah.behaviour.health.maxHitPoints *= 1000f;
+        }
 
         public override void OnFixedUpdate()
         {
